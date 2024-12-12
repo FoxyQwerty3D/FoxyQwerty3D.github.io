@@ -13,74 +13,107 @@
             box-sizing: border-box;
         }
         body {
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #4e73df;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: #f8f8f9;
+            color: #333;
         }
         .banner {
             background-image: url('https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494');
             background-size: cover;
             background-position: center;
-            padding: 250px 20px;
-            color: white;
+            height: 120vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            color: white;
+            padding: 20px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+            flex-direction: column; /* 텍스트를 수직으로 배치 */
         }
         .banner h2 {
-            font-size: 37px;
+            font-size: 45px;
             opacity: 0;
-            transform: translateY(30px); /* 처음에는 아래로 위치 */
+            transform: translateY(30px);
             transition: opacity 1s ease, transform 1s ease;
         }
         .banner p {
-            font-size: 20px;
+            font-size: 18px;
             opacity: 0;
-            transform: translateY(30px); /* 처음에는 아래로 위치 */
+            transform: translateY(30px);
             transition: opacity 1s ease, transform 1s ease;
+            margin-top: 10px;
         }
         .content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4개의 카드가 일정한 크기로 배치 */
-            gap: 20px; /* 카드 간 간격 */
-            padding: 40px;
-            margin-left: 20px; /* 왼쪽 벽면과 20px 간격 */
-            margin-right: 20px; /* 오른쪽 벽면과 20px 간격 */
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap; /* 여러 줄로 자동 정렬 */
         }
         .card {
-            background-color: white;
-            padding: 60px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 23%; /* 4개 카드가 한 줄에 들어가게 하기 위해서 */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.7));
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            opacity: 0; /* 처음에는 보이지 않음 */
-            transform: translateY(30px); /* 처음 위치를 아래로 설정 */
-            transition: all 0.6s ease-in-out; /* 애니메이션 속도를 1초로 설정 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform: translateY(30px);
+            opacity: 0;
         }
         .card.show {
             opacity: 1;
-            transform: translateY(0); /* 보이면서 위로 올라옴 */
+            transform: translateY(0);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
         }
         .card h3 {
-            margin-bottom: 15px; /* 제목과 본문 사이에 15px 여백 추가 */
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #4e73df;
         }
         .card p {
-            margin-bottom: 10px; /* 본문과 본문 사이에도 약간의 여백 추가 */
-        }
-        footer {
-            background-color: rgba(9, 9, 9, 0.2); /* 배경에만 투명도 적용 */
-            color: white;
-            text-align: center;
-            padding: 10px 0;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
         }
         .card a {
             color: #4e73df;
             text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .card a:hover {
+            color: #2e59d9;
+        }
+        footer {
+            background-color: rgba(9, 9, 9, 0.1);
+            color: #333;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+        .footer-logo {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        /* 모바일 화면에서 카드가 50%씩 줄어들게 하기 */
+        @media (max-width: 768px) {
+            .card {
+                width: 48%; /* 두 개씩 한 줄로 보이게 */
+            }
+        }
+
+        /* 작은 화면에서 카드가 100%씩 차지하게 하기 */
+        @media (max-width: 480px) {
+            .card {
+                width: 100%; /* 세로로 쭉 나열되도록 */
+            }
         }
     </style>
 </head>
@@ -88,60 +121,57 @@
 
     <div class="banner">
         <h2>FOXYQWERTY 3D</h2>
-      <p>3D modeling / Look Dev</p>
+        <p>3D Modeling / Look Dev</p>
     </div>
 
     <div class="content">
         <div class="card" id="about">
             <h3>About Me</h3>
-            <p>Korean</p>
-            <p>3D Major</p>
-            <p>Maya / 3Ds Max / ZBrush / Unity / etc.</p>
+            <p>Korean 3D Artist</p>
+            <p>Specializing in Maya, 3ds Max, ZBrush, Unity</p>
         </div>
         <div class="card" id="portfolio">
             <h3>Portfolio</h3>
-            <p>Check out my works! </p>
+            <p>Explore my best works.</p>
             <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">VIEW ARTSTATION ></a>
         </div>
         <div class="card" id="commission">
             <h3>Commission</h3>
-            <p>close.<div class="GapViewItemselected">2025 / 02 open</div></p>
+            <p>Open for work in February 2025</p>
+            <p>Stay tuned for availability!</p>
         </div>
         <div class="card" id="contact">
             <h3>Contact</h3>
-            <p>coraline0120@gmail.com</p>
-            <a href="https://x.com/FoxyQwerty3D" target="_blank">x.com/FoxyQwerty3D ></a>
+            <p>Email: coraline0120@gmail.com</p>
+            <a href="https://x.com/FoxyQwerty3D" target="_blank">Visit my profile on X.com ></a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 FOXYQWERTY 3D. All rights reserved.</p>
+        <div class="footer-logo">&copy; 2024 FOXYQWERTY3D</div>
     </footer>
 
     <script>
-        // 페이지 로드 시 바로 카드 애니메이션을 실행
         document.addEventListener('DOMContentLoaded', () => {
-            // 카드 애니메이션 처리 - 배너보다 먼저 실행
             const cards = document.querySelectorAll('.card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
-                    card.classList.add('show'); // 카드가 순차적으로 나타남
-                }, index * 200); // 각 카드마다 0.2초 간격으로 애니메이션 실행
+                    card.classList.add('show');
+                }, index * 200);
             });
 
-            // 배너 애니메이션 처리
             const bannerTitle = document.querySelector('.banner h2');
             const bannerDescription = document.querySelector('.banner p');
             
             setTimeout(() => {
                 bannerTitle.style.opacity = 1;
                 bannerTitle.style.transform = 'translateY(0)';
-            }, 600); // 0.6초 후에 나타나도록 설정
+            }, 600);
 
             setTimeout(() => {
                 bannerDescription.style.opacity = 1;
                 bannerDescription.style.transform = 'translateY(0)';
-            }, 900); // 0.9초 후에 나타나도록 설정
+            }, 900);
         });
     </script>
 
