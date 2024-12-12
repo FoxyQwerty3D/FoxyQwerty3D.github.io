@@ -46,13 +46,15 @@
         }
         .content {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr); /* 4개의 카드가 일정한 크기로 배치 */
+            gap: 20px; /* 카드 간 간격 */
             padding: 40px;
+            margin-left: 20px; /* 왼쪽 벽면과 20px 간격 */
+            margin-right: 20px; /* 오른쪽 벽면과 20px 간격 */
         }
         .card {
             background-color: white;
-            padding: 100px;
+            padding: 80px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -60,13 +62,18 @@
             transform: translateY(30px); /* 처음 위치를 아래로 설정 */
             transition: all 0.6s ease-in-out; /* 애니메이션 속도를 1초로 설정 */
         }
-
         .card.show {
             opacity: 1;
             transform: translateY(0); /* 보이면서 위로 올라옴 */
         }
+        .card h3 {
+            margin-bottom: 15px; /* 제목과 본문 사이에 15px 여백 추가 */
+        }
+        .card p {
+            margin-bottom: 10px; /* 본문과 본문 사이에도 약간의 여백 추가 */
+        }
         footer {
-            background-color: rgba(78, 115, 223, 0.8); /* 배경에만 투명도 적용 */
+            background-color: rgba(9, 9, 9, 0.2); /* 배경에만 투명도 적용 */
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -81,24 +88,28 @@
 
     <div class="banner">
         <h2>FOXYQWERTY 3D</h2>
-        <p>Specializing in 3D modeling for various creative projects</p>
+      <p>3D modeling / Look Dev</p>
     </div>
 
     <div class="content">
         <div class="card" id="about">
             <h3>About Me</h3>
-            <p>Korean.</p>
-            <a href="#about">Learn More</a>
-        </div>
-        <div class="card" id="commission">
-            <h3>Commission</h3>
-            <p>If you're interested in a custom project, feel free to check out the commission details here.</p>
-            <a href="#commission">Commission Info</a>
+            <p>Korean</p>
+            <p>3D Major</p>
+            <p>Maya / 3Ds Max / ZBrush / Unity / etc.</p>
         </div>
         <div class="card" id="portfolio">
             <h3>Portfolio</h3>
             <p>Check out my works! See the variety of projects I've worked on.</p>
-            <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">View Portfolio</a>
+            <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">VIEW ARTSTATION ></a>
+        </div>
+        <div class="card" id="commission">
+            <h3>Commission</h3>
+            <p>Feel free to check out commission details for custom projects.</p>
+        </div>
+        <div class="card" id="contact">
+            <h3>Contact</h3>
+            <p>Get in touch with me for collaborations or inquiries!</p>
         </div>
     </div>
 
