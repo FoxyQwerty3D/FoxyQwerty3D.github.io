@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Website</title>
+    <title>FOXYQWERTY 3D - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <style>
         body {
@@ -18,41 +18,37 @@
             scroll-behavior: smooth;
         }
         header {
-            font-family: 'Noto Sans', sans-serif;
-            background-color: #898da3;
+            background-color: #5e6a8c;
             color: white;
-            padding: 30px 0;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         nav {
-            font-family: 'Noto Sans', sans-serif;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         nav a {
-            font-family: 'Noto Sans', sans-serif;
             color: white;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 15px;
             font-weight: bold;
         }
         nav a:hover {
-            font-family: 'Noto Sans', sans-serif;
             text-decoration: underline;
         }
         section {
-            font-family: 'Noto Sans', sans-serif;
-            padding: 20px;
+            padding: 40px 20px;
         }
         footer {
-            font-family: 'Noto Sans', sans-serif;
             background-color: rgba(255, 255, 255, 0.8);
-            color: #898da3;
+            color: #5e6a8c;
             padding: 10px 0;
             position: fixed;
             bottom: 0;
             width: 100%;
+            font-size: 14px;
         }
         /* 고양이 머리 모양 버튼 스타일 */
         .scroll-to-top {
@@ -62,35 +58,35 @@
             width: 50px;
             height: 50px;
             background-color: transparent;
-            border: 2px solid #898da3;
+            border: 2px solid #5e6a8c;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .scroll-to-top:hover {
-            background-color: #898da3;
+            background-color: #5e6a8c;
             color: white;
         }
         .scroll-to-top:before {
             content: "↑"; /* 위 화살표 */
             font-size: 24px;
-            color: #898da3;
+            color: #5e6a8c;
         }
     </style>
 </head>
 <body>
     <header>
-        <!-- 'FOXYQWERTY 3D' 클릭 시 #about으로 이동 -->
         <a href="#about" style="text-decoration: none; color: white;">
             <h1>FOXYQWERTY 3D</h1>
         </a>
         <nav>
-            <a href="#about" aria-label="Go to About Me section">About Me</a>
-            <a href="#commission" aria-label="Go to Commission section">Commission</a>
-            <a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a>
-            <a href="#contact" aria-label="Go to Contact section">Contact</a>
+            <a href="about.html" target="_blank" aria-label="Go to About Me section">About Me</a>
+            <a href="commission.html" target="_blank" aria-label="Go to Commission section">Commission</a>
+            <a href="portfolio.html" target="_blank" aria-label="Go to Portfolio section">Portfolio</a>
+            <a href="contact.html" target="_blank" aria-label="Go to Contact section">Contact</a>
         </nav>
     </header>
     
