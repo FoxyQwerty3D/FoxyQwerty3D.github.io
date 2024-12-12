@@ -22,6 +22,9 @@
             background-color: #898da3;
             color: white;
             padding: 30px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         nav {
             font-family: 'Noto Sans', sans-serif;
@@ -44,12 +47,36 @@
         }
         footer {
             font-family: 'Noto Sans', sans-serif;
-            background-color: #000;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #898da3;
             padding: 10px 0;
             position: fixed;
             bottom: 0;
             width: 100%;
+        }
+        /* 고양이 머리 모양 버튼 스타일 */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid #898da3;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .scroll-to-top:hover {
+            background-color: #898da3;
+            color: white;
+        }
+        .scroll-to-top:before {
+            content: "↑"; /* 위 화살표 */
+            font-size: 24px;
+            color: #898da3;
         }
     </style>
 </head>
@@ -60,7 +87,8 @@
             <h1>FOXYQWERTY 3D</h1>
         </a>
         <nav>
-            <a href="#about" aria-label="Go to About section">About Me</a>
+            <a href="#about" aria-label="Go to About Me section">About Me</a>
+            <a href="#commission" aria-label="Go to Commission section">Commission</a>
             <a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a>
             <a href="#contact" aria-label="Go to Contact section">Contact</a>
         </nav>
@@ -71,17 +99,12 @@
         <p>안녕하세요. 3D모델러 FoxyQwerty입니다.</p>
         <p>South Korea</p>
         <p>3DsMax / Maya / ZBrush / Unity / etc</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
+    </section>
     
+    <section id="commission">
+        <h2>Commission</h2>
+        <p>Commission Information</p>
+        <p>Details coming soon...</p>
     </section>
     
     <section id="portfolio">
@@ -97,14 +120,14 @@
         <p>Email: coraline0120@gmail.com</p>
         <p>Artstation: <a href="https://artstation.com/foxyqwerty3d" target="_blank">artstation.com/foxyqwerty3d</a></p>
         <p>X: <a href="https://x.com/FoxyQwerty3D" target="_blank">https://x.com/FoxyQwerty3D</a></p>
-        <p> </p>
-        <p> </p>
-        <p> </p>
-        <p> </p>
     </section>
     
     <footer>
         <p>&copy; 2024 FOXYQWERTY 3D</p>
     </footer>
+
+    <!-- 고양이 머리 모양 버튼 -->
+    <div class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    </div>
 </body>
 </html>
