@@ -1,2 +1,76 @@
-# FoxyQwerty3D.github.io
-FoxyQwerty3D.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: #abb3db;
+            color: white;
+            padding: 20px 0;
+        }
+        nav {
+            margin: 15px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FOXYQWERTY 3D</h1>
+        <nav>
+            <a href="#about" aria-label="Go to About section">About Me</a>
+            <a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a>
+            <a href="#contact" aria-label="Go to Contact section">Contact</a>
+        </nav>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>This is a simple website created to demonstrate basic HTML and CSS.</p>
+    </section>
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <p>We provide clean and minimal web design for beginners.</p>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: coraline0120@gmail.com</p>
+        <p>Artstation: <a href="https://artstation.com/foxyqwerty3d" target="_blank">artstation.com/foxyqwerty3d</a></p>
+        <p>X: <a href="https://x.com/FoxyQwerty3D" target="_blank">https://x.com/FoxyQwerty3D</a></p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Simple Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
