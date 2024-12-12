@@ -6,14 +6,17 @@
     <title>FOXYQWERTY 3D</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             font-family: 'Noto Sans', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #dbdfeb;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f4f4f9;
         }
         header {
-            background-color: #859ec7;
+            background-color: #4e73df;
             color: white;
             padding: 20px 0;
             text-align: center;
@@ -21,24 +24,11 @@
             top: 0;
             z-index: 1000;
         }
-        header nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-        header nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        header nav a:hover {
-            text-decoration: underline;
-        }
         .banner {
-            background-image: url('https://example.com/banner-image.jpg');
+            background-image: url('https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494');
             background-size: cover;
             background-position: center;
-            padding: 100px 20px;
+            padding: 140px 20px;
             color: white;
             text-align: center;
         }
@@ -57,13 +47,20 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            opacity: 0; /* 처음에는 보이지 않음 */
+            transform: translateY(30px); /* 처음 위치를 아래로 설정 */
+            transition: all 0.5s ease-in-out;
+        }
+        .card.show {
+            opacity: 1;
+            transform: translateY(0); /* 보이면서 위로 올라옴 */
         }
         .card h3 {
             font-size: 24px;
             margin-bottom: 10px;
         }
         footer {
-            background-color: rgba(78, 115, 223, 0.8);/* 배경에만 투명도 적용 */
+            background-color: rgba(78, 115, 223, 0.8); /* 배경에만 투명도 적용 */
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -75,29 +72,16 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#commission">Commission</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
     <div class="banner">
-        <h2>
-        <h2 class="GapViewItemselected" contenteditable="true">Welcome to FOXYQWERTY 3D</h2>
-        <p>Specializing in 3D modeling for various creative projects.</p>
-    </h2>
+        <h2>Welcome to FOXYQWERTY 3D</h2>
         <p>Specializing in 3D modeling for various creative projects.</p>
     </div>
 
     <div class="content">
         <div class="card" id="about">
             <h3>About Me</h3>
-          <p>3D Modeler / Look Dev</p>
-          <p>Korean / Chinese / Japanese</p>
-          <p>Maya 3DsMax Zbrush Unity etc</p>
+            <p>Korean.</p>
             <a href="#about">Learn More</a>
         </div>
         <div class="card" id="commission">
@@ -115,5 +99,29 @@
     <footer>
         <p>&copy; 2024 FOXYQWERTY 3D. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Intersection Observer를 사용하여 스크롤 시 카드들이 나타나게 함
+        const cards = document.querySelectorAll('.card');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.3 // 30% 이상 화면에 들어오면 트리거
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // 이미 애니메이션이 실행되었으면 관찰 중지
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            observer.observe(card); // 각 카드를 관찰
+        });
+    </script>
+
 </body>
 </html>
