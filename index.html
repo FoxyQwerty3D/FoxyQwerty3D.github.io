@@ -28,12 +28,21 @@
             background-image: url('https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494');
             background-size: cover;
             background-position: center;
-            padding: 140px 20px;
+            padding: 150px 20px;
             color: white;
             text-align: center;
         }
         .banner h2 {
-            font-size: 36px;
+            font-size: 37px;
+            opacity: 0;
+            transform: translateY(30px); /* 처음에는 아래로 위치 */
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .banner p {
+            font-size: 20px;
+            opacity: 0;
+            transform: translateY(30px); /* 처음에는 아래로 위치 */
+            transition: opacity 1s ease, transform 1s ease;
         }
         .content {
             display: grid;
@@ -49,15 +58,12 @@
             text-align: center;
             opacity: 0; /* 처음에는 보이지 않음 */
             transform: translateY(30px); /* 처음 위치를 아래로 설정 */
-            transition: all 0.5s ease-in-out;
+            transition: all 0.6s ease-in-out; /* 애니메이션 속도를 1초로 설정 */
         }
+
         .card.show {
             opacity: 1;
             transform: translateY(0); /* 보이면서 위로 올라옴 */
-        }
-        .card h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
         }
         footer {
             background-color: rgba(78, 115, 223, 0.8); /* 배경에만 투명도 적용 */
@@ -74,8 +80,8 @@
 <body>
 
     <div class="banner">
-        <h2>Welcome to FOXYQWERTY 3D</h2>
-        <p>Specializing in 3D modeling for various creative projects.</p>
+        <h2>FOXYQWERTY 3D</h2>
+        <p>Specializing in 3D modeling for various creative projects</p>
     </div>
 
     <div class="content">
@@ -101,25 +107,27 @@
     </footer>
 
     <script>
-        // Intersection Observer를 사용하여 스크롤 시 카드들이 나타나게 함
-        const cards = document.querySelectorAll('.card');
+        // 페이지 로드 시 바로 카드 애니메이션을 실행
+        document.addEventListener('DOMContentLoaded', () => {
+            // 배너 애니메이션 처리
+            const bannerTitle = document.querySelector('.banner h2');
+            const bannerDescription = document.querySelector('.banner p');
+            
+            setTimeout(() => {
+                bannerTitle.style.opacity = 1;
+                bannerTitle.style.transform = 'translateY(0)';
+            }, 300); // 0.3초 후에 나타나도록 설정
 
-        const observerOptions = {
-            root: null,
-            threshold: 0.3 // 30% 이상 화면에 들어오면 트리거
-        };
+            setTimeout(() => {
+                bannerDescription.style.opacity = 1;
+                bannerDescription.style.transform = 'translateY(0)';
+            }, 600); // 0.6초 후에 나타나도록 설정
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                    observer.unobserve(entry.target); // 이미 애니메이션이 실행되었으면 관찰 중지
-                }
+            // 카드 애니메이션 처리
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.classList.add('show'); // 페이지 로드 시 바로 카드 애니메이션 적용
             });
-        }, observerOptions);
-
-        cards.forEach(card => {
-            observer.observe(card); // 각 카드를 관찰
         });
     </script>
 
