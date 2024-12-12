@@ -44,66 +44,63 @@
             bottom: 0;
             width: 100%;
         }
+        /* 배너 스타일 추가 */
+        .banner {
+            background-image: url('banner.jpg'); /* 배너 이미지 */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 3rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>FOXYQWERTY 3D</h1>
+        <!-- 'FOXYQWERTY 3D' 클릭 시 #about으로 이동 -->
+        <a href="#about" style="text-decoration: none; color: white;">
+            <h1>FOXYQWERTY 3D</h1>
+        </a>
         <nav>
             <a href="#about" aria-label="Go to About section">About Me</a>
             <a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a>
             <a href="#contact" aria-label="Go to Contact section">Contact</a>
         </nav>
     </header>
+    
+    <!-- 배너 추가 -->
+    <div class="banner" id="main-banner" onclick="location.href='#about';">
+        <h1>Welcome to FOXYQWERTY 3D</h1>
+    </div>
+    
     <section id="about">
         <h2>About Me</h2>
-        <p>안녕하세요.3D모델러 FoxyQwerty입니다.</p>
+        <p>안녕하세요. 3D모델러 FoxyQwerty입니다.</p>
         <p>South Korea</p>
-        <p> </p>
         <p>3DsMax / Maya / ZBrush / Unity / etc</p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
     </section>
+    
     <section id="portfolio">
         <h2>Portfolio</h2>
         <p>이외 더 많은 작품은 아트스테이션에서 확인 가능합니다.</p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        <p>자동 섹션 스크롤 이동 어쩌고 테스트 </p>
-        
     </section>
+    
     <section id="contact">
         <h2>Contact</h2>
         <p>Email: coraline0120@gmail.com</p>
         <p>Artstation: <a href="https://artstation.com/foxyqwerty3d" target="_blank">artstation.com/foxyqwerty3d</a></p>
         <p>X: <a href="https://x.com/FoxyQwerty3D" target="_blank">https://x.com/FoxyQwerty3D</a></p>
     </section>
+    
     <footer>
-
+        <p>&copy; 2024 FOXYQWERTY 3D</p>
     </footer>
 </body>
 </html>
