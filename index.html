@@ -1,252 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOXYQWERTY 3D</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <title>VLAST</title>
     <style>
-        * {
-            font-family: 'Noto Sans', sans-serif;
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #1a1a1a;
+            color: #fff;
         }
-        body {
-            overflow-x: hidden;
-            position: relative;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        /* 라이트모드 배경 */
-        .light-mode {
-            background-color: #f8f8f9;
-            color: #333;
-        }
-        /* 다크모드 배경 */
-        .dark-mode {
-            background-color: #333;
-            color: white;
-        }
-        .banner {
-            background-image: url('https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
+
+        header {
+            background-color: #000;
             padding: 20px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
-            flex-direction: column;
-            margin-top: 40px;
-        }
-        .banner h2 {
-            font-size: 45px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        .banner p {
-            font-size: 18px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-            margin-top: 10px;
-        }
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 40px 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .card {
-            width: 23%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.7));
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform: translateY(30px);
-            opacity: 0;
-            position: relative;
-            overflow: hidden;
         }
-        .card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
-        .card:hover img {
-            opacity: 1;
+
+        nav ul li {
+            display: inline;
+            margin-right: 30px;
         }
-        .card.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-        }
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            color: #555; /* 기본 색상 */
-        }
-        /* 다크모드에서 카드 제목 색상 고정 */
-        .dark-mode .card h3 {
-            color: #555; /* 다크모드에서 색상 변하지 않도록 고정 */
-        }
-        .card p {
-            font-size: 13px;
-            margin-bottom: 10px;
-            color: #555;
-        }
-        .card a {
-            font-size: 13px;
-            color: #4e73df;
+
+        nav ul li a {
+            color: #fff;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-size: 18px;
         }
-        .card a:hover {
-            color: #2e59d9;
+
+        main {
+            padding: 50px 20px;
         }
+
+        .section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
         footer {
-            background-color: rgba(9, 9, 9, 0.1);
-            color: #333;
+            background-color: #000;
+            padding: 20px;
             text-align: center;
-            padding: 1px 0;
-            font-size: 14px;
-        }
-        .footer-logo {
-            margin: 10px 0;
-            font-weight: bold;
-        }
-        /* 배경에 그리드 추가 */
-        .grid-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            z-index: -1;
-        }
-        /* 다크모드에서 그리드 스타일 변경 */
-        .dark-mode .grid-background {
-            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        /* 라이트모드에서 그리드 색상 반전 */
-        .light-mode .grid-background {
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
 </head>
-<body class="light-mode">
-    <div class="grid-background"></div>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showSection('aboutSection')">ABOUT</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('portfolioSection')">PORTFOLIO</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('commissionSection')">COMMISSION</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('contactSection')">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="banner">
-        <h2>FOXYQWERTY 3D</h2>
-        <p>3D Modeling / Look Dev</p>
-    </div>
+    <main>
+        <section id="aboutSection" class="section active">
+            <h1>About FoxyQwerty</h1>
+            <p>안녕하세요 FoxyQwerty입니다</p>
+          <p>3D Modeling / Chinese Major</p>
+          <p>KR / CN / JP</p>
+        </section>
 
-    <div class="content">
-        <div class="card" id="about">
-            <img src="https://via.placeholder.com/150" alt="About Image">
-            <h3>About Me</h3>
-            <p>Korean 3D Artist</p>
-            <p>Maya, 3ds Max, ZBrush, Unity, etc</p>
-        </div>
-        <div class="card" id="portfolio">
-            <img src="https://via.placeholder.com/150" alt="Portfolio Image">
-            <h3>Portfolio</h3>
-            <p>Explore my best works.</p>
-            <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">VIEW ARTSTATION ></a>
-        </div>
-        <div class="card" id="commission">
-            <img src="https://via.placeholder.com/150" alt="Commission Image">
-            <h3>Commission</h3>
-            <p>Closed</p>
-            <p>February 2025 Open</p>
-            <p>삼면도 필수 (중요 파츠 디테일샷 필요)</p>
-            <p>퍼리, R18은 받지 않고 있습니다</p>
-            <p>아이폰 페이스아이디, VseeFace 트래킹 모델을 제작합니다</p>
-            <p>오리지널 모델링만 작업합니다.</p>
-            <p>저작권은 작가에게 있습니다.</p>
-            <p>상업 이용은 저작권 양도 절차를 밟습니다</p>
-        </div>
-        <div class="card" id="contact">
-            <img src="https://via.placeholder.com/150" alt="Contact Image">
-            <h3>Contact</h3>
+        <section id="portfolioSection" class="section">
+            <h1>Portfolio</h1>
+            <p>여기서는 우리의 다양한 작업을 소개합니다.</p>
+        </section>
+
+        <section id="commissionSection" class="section">
+            <h1>Commission</h1>
+            <p>커미션 작업에 대한 안내 및 가격은 이곳에서 확인하실 수 있습니다.</p>
+        </section>
+
+        <section id="contactSection" class="section">
+            <h1>Contact</h1>
+            <p>문의 사항은 여기에서 연락해 주세요.</p>
             <p>Email: coraline0120@gmail.com</p>
-            <a href="https://x.com/FoxyQwerty3D" target="_blank">Visit my profile on X.com ></a>
-        </div>
-    </div>
+            <p>X</p>
+            <a href="https://x.com/FoxyQwerty3D" target="_blank">Visit my profile on X.com (Twitter) ></a>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-logo">&copy; 2024 FOXYQWERTY 3D</div>
+        <p>© 2024 FOXYQWERTY 3D</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('show');
-                }, index * 200);
-            });
-
-            const bannerTitle = document.querySelector('.banner h2');
-            const bannerDescription = document.querySelector('.banner p');
-            
-            setTimeout(() => {
-                bannerTitle.style.opacity = 1;
-                bannerTitle.style.transform = 'translateY(0)';
-            }, 600);
-
-            setTimeout(() => {
-                bannerDescription.style.opacity = 1;
-                bannerDescription.style.transform = 'translateY(0)';
-            }, 900);
-
-            // Dark Mode Toggle
-            const toggleButton = document.createElement('button');
-            toggleButton.innerText = 'Dark Mode';
-            toggleButton.style.position = 'fixed';
-            toggleButton.style.bottom = '20px';
-            toggleButton.style.right = '20px';
-            toggleButton.style.padding = '10px 20px';
-            toggleButton.style.backgroundColor = 'rgba(9, 9, 9, 0.7';
-            toggleButton.style.color = 'white';
-            toggleButton.style.border = 'none';
-            toggleButton.style.borderRadius = '5px';
-            toggleButton.style.cursor = 'pointer';
-
-            document.body.appendChild(toggleButton);
-
-            toggleButton.addEventListener('click', () => {
-                const body = document.body;
-                body.classList.toggle('dark-mode');
-                body.classList.toggle('light-mode');
-            });
-        });
-    </script>
-
 </body>
 </html>
