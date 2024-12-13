@@ -15,10 +15,12 @@
         body {
             background-color: #f8f8f9;
             color: #333;
+            overflow-x: hidden;
         }
         .banner {
             background-image: url('https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494');
             background-size: cover;
+            background-attachment: fixed;
             background-position: center;
             height: 60vh;
             display: flex;
@@ -28,8 +30,8 @@
             color: white;
             padding: 20px;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
-            flex-direction: column; /* 텍스트를 수직으로 배치 */
-            margin-top: 40px; /* 배너 위에 40픽셀 빈 공간 추가 */
+            flex-direction: column;
+            margin-top: 40px;
         }
         .banner h2 {
             font-size: 45px;
@@ -46,16 +48,15 @@
         }
         .content {
             display: flex;
-            justify-content: space-between; /* 카드들을 가로로 고르게 배치 */
-            flex-wrap: wrap; /* 화면 크기에 따라 카드들이 다음 줄로 넘어가도록 설정 */
+            flex-wrap: wrap;
             gap: 20px;
             padding: 40px 20px;
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto; /* 화면 기준 가운데 정렬 */
+            margin: 0 auto;
         }
         .card {
-            width: 23%; /* 카드 크기를 4개가 일렬로 배치될 수 있도록 설정 */
+            width: 23%;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.7));
             border-radius: 20px;
             padding: 30px;
@@ -64,6 +65,22 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             transform: translateY(30px);
             opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover img {
+            opacity: 1;
         }
         .card.show {
             opacity: 1;
@@ -76,15 +93,14 @@
         .card h3 {
             font-size: 22px;
             margin-bottom: 20px;
-            color: ddddd;
         }
         .card p {
-            font-size: 13px; /* 폰트 크기를 13px로 설정 */
+            font-size: 13px;
             margin-bottom: 10px;
             color: #555;
         }
         .card a {
-            font-size: 13px; /* 폰트 크기를 13px로 설정 */
+            font-size: 13px;
             color: #4e73df;
             text-decoration: none;
             font-weight: bold;
@@ -104,6 +120,17 @@
             margin: 10px 0;
             font-weight: bold;
         }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+        .dark-mode .card {
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(70, 70, 70, 0.7));
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+        .dark-mode .card h3, .dark-mode .card p, .dark-mode .footer-logo {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -115,16 +142,19 @@
 
     <div class="content">
         <div class="card" id="about">
+            <img src="https://via.placeholder.com/150" alt="About Image">
             <h3>About Me</h3>
             <p>Korean 3D Artist</p>
             <p>Maya, 3ds Max, ZBrush, Unity, etc</p>
         </div>
         <div class="card" id="portfolio">
+            <img src="https://via.placeholder.com/150" alt="Portfolio Image">
             <h3>Portfolio</h3>
             <p>Explore my best works.</p>
             <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">VIEW ARTSTATION ></a>
         </div>
         <div class="card" id="commission">
+            <img src="https://via.placeholder.com/150" alt="Commission Image">
             <h3>Commission</h3>
             <p>Closed</p>
             <p>February 2025 Open</p>
@@ -132,10 +162,11 @@
             <p>퍼리, R18은 받지 않고 있습니다</p>
             <p>아이폰 페이스아이디, VseeFace 트래킹 모델을 제작합니다</p>
             <p>오리지널 모델링만 작업합니다.</p>
-            <p>저작권은 작가에게 있습니다.<p/>
+            <p>저작권은 작가에게 있습니다.</p>
             <p>상업 이용은 저작권 양도 절차를 밟습니다</p>
         </div>
         <div class="card" id="contact">
+            <img src="https://via.placeholder.com/150" alt="Contact Image">
             <h3>Contact</h3>
             <p>Email: coraline0120@gmail.com</p>
             <a href="https://x.com/FoxyQwerty3D" target="_blank">Visit my profile on X.com ></a>
@@ -167,6 +198,25 @@
                 bannerDescription.style.opacity = 1;
                 bannerDescription.style.transform = 'translateY(0)';
             }, 900);
+
+            // Dark Mode Toggle
+            const toggleButton = document.createElement('button');
+            toggleButton.innerText = 'Toggle Dark Mode';
+            toggleButton.style.position = 'fixed';
+            toggleButton.style.bottom = '20px';
+            toggleButton.style.right = '20px';
+            toggleButton.style.padding = '10px 20px';
+            toggleButton.style.backgroundColor = '#4e73df';
+            toggleButton.style.color = 'white';
+            toggleButton.style.border = 'none';
+            toggleButton.style.borderRadius = '5px';
+            toggleButton.style.cursor = 'pointer';
+
+            document.body.appendChild(toggleButton);
+
+            toggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+            });
         });
     </script>
 
