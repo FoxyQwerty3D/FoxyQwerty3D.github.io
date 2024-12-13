@@ -103,6 +103,11 @@
         .card h3 {
             font-size: 22px;
             margin-bottom: 20px;
+            color: #555; /* 기본 색상 */
+        }
+        /* 다크모드에서 카드 제목 색상 고정 */
+        .dark-mode .card h3 {
+            color: #555; /* 다크모드에서 색상 변하지 않도록 고정 */
         }
         .card p {
             font-size: 13px;
@@ -222,12 +227,12 @@
 
             // Dark Mode Toggle
             const toggleButton = document.createElement('button');
-            toggleButton.innerText = 'Toggle Dark Mode';
+            toggleButton.innerText = 'Dark Mode';
             toggleButton.style.position = 'fixed';
             toggleButton.style.bottom = '20px';
             toggleButton.style.right = '20px';
             toggleButton.style.padding = '10px 20px';
-            toggleButton.style.backgroundColor = '#4e73df';
+            toggleButton.style.backgroundColor = 'rgba(9, 9, 9, 0.7';
             toggleButton.style.color = 'white';
             toggleButton.style.border = 'none';
             toggleButton.style.borderRadius = '5px';
