@@ -87,6 +87,7 @@
         .banner .character-layer {
             position: absolute;
             bottom: 0;
+            right: 0;
             width: auto;
             height: 450px;
             z-index: 2;
@@ -196,8 +197,8 @@
 
     <!-- 메인 배너 -->
     <section class="banner" id="main-banner">
-        <img src="https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494" alt="메인 배너 배경" class="background-img">
-        <img src="https://www.artstation.com" alt="캐릭터 이미지" class="character-layer">
+        <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/foxyqwerty-foxyqwerty-divingdeeper04.jpg?raw=true" alt="메인 배너 배경" class="background-img"> <!-- GitHub URL로 수정 -->
+        <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/git.png?raw=true" alt="캐릭터 이미지" class="character-layer"> <!-- GitHub URL로 수정 -->
         <div class="banner-content">
             <h1>FoxyQwerty</h1>
             <p>3D Modeling / Look Dev</p>
@@ -232,57 +233,3 @@
             <p>상업 이용은 저작권 양도 절차를 밟습니다.</p>
         </div>
         <!-- Contact 탭의 카드 -->
-        <div class="card hidden" data-tab="contact">
-            <h3>Contact</h3>
-            <p>coraline0120@gmail.com</p>
-            <P>또는 Discord 'FoxyQwerty'로 연락주세요</p>
-        </div>
-    </section>
-
-    <!-- JavaScript -->
-    <script>
-        const homeLink = document.getElementById('home-link');
-        const virtualLink = document.getElementById('virtual-link');
-        const contactLink = document.getElementById('contact-link');
-        const mainBanner = document.getElementById('main-banner');
-        const cardSection = document.getElementById('card-section');
-        const underline = document.getElementById('underline');
-        const navItems = document.querySelectorAll('.nav-item');
-
-        function updatePageVisibility(page) {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                if (card.getAttribute('data-tab') === page) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            if (page === 'home') {
-                mainBanner.classList.remove('hidden');
-            } else {
-                mainBanner.classList.add('hidden');
-            }
-        }
-
-        function setUnderlinePosition(target) {
-            const targetWidth = target.offsetWidth;
-            const targetLeft = target.offsetLeft;
-
-            underline.style.width = `${targetWidth}px`;
-            underline.style.left = `${targetLeft}px`;
-        }
-
-        // 페이지가 처음 로드될 때 홈 탭에 밑줄 설정
-        window.onload = () => setUnderlinePosition(homeLink);
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                setUnderlinePosition(item); // 클릭한 탭에 맞게 밑줄 위치 변경
-                updatePageVisibility(item.id === 'home-link' ? 'home' : item.id === 'virtual-link' ? 'virtual' : 'contact');
-            });
-        });
-    </script>
-</body>
-</html>
