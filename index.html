@@ -18,6 +18,44 @@
             color: inherit;
         }
 
+        /* 탭 메뉴 */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px 0;
+        }
+
+        .tabs a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .tabs a.active {
+            background-color: #6C63FF;
+            color: #fff;
+        }
+
+        /* 탭 내용 */
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: #f9f9f9;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         /* 메인 배너 스타일 */
         .banner {
             position: relative;
@@ -93,46 +131,17 @@
             color: #fff;
         }
 
-        /* 카드 섹션 */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            background-color: #f1f1f1;
-            padding: 10px 0;
-        }
-
-        .tabs a {
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            color: #333;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 25px;
-            transition: background-color 0.3s;
-        }
-
-        .tabs a.active {
-            background-color: #6C63FF;
-            color: #fff;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 30px;
-            background-color: #f9f9f9;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
     </style>
 </head>
 <body>
+
+    <!-- 탭 메뉴 -->
+    <div class="tabs">
+        <a href="#" id="home-tab" class="tab-link active" data-target="home">Home</a> <!-- 어바웃 미를 홈으로 변경 -->
+        <a href="#" id="virtual-tab" class="tab-link" data-target="virtual">Virtual</a>
+        <a href="#" id="commission-tab" class="tab-link" data-target="commission">Commission</a> <!-- 커미션 탭 추가 -->
+        <a href="#" id="contact-tab" class="tab-link" data-target="contact">Contact</a>
+    </div>
 
     <!-- 메인 배너 -->
     <section class="banner" id="main-banner">
@@ -145,16 +154,9 @@
         </div>
     </section>
 
-    <!-- 탭 메뉴 -->
-    <div class="tabs">
-        <a href="#" id="home-tab" class="tab-link active" data-target="home">About Me</a>
-        <a href="#" id="virtual-tab" class="tab-link" data-target="virtual">Virtual</a>
-        <a href="#" id="contact-tab" class="tab-link" data-target="contact">Contact</a>
-    </div>
-
     <!-- 탭 내용 -->
     <div id="home" class="tab-content active">
-        <h3>About Me</h3>
+        <h3>Home</h3>
         <p>Korean</p>
         <p>KR / CN / JP</p>
         <p>3D Modeling, Chinese Major</p>
@@ -166,7 +168,13 @@
     </div>
 
     <div id="virtual" class="tab-content">
-        <h3>Virtual</h3>
+        <h3>아아- 등대에서 만나자</h3>
+        <p>버츄얼 아티스트를 소개합니다</p>
+        <p>NAME:</p>
+    </div>
+
+    <div id="commission" class="tab-content">
+        <h3>Commission</h3>
         <p>Closed</p>
         <p>February 2025 Open</p>
         <p>삼면도 필수 (중요 파츠 디테일샷 필요)</p>
@@ -179,13 +187,16 @@
 
     <div id="contact" class="tab-content">
         <h3>Contact</h3>
-        <p>Reach out to me via email: coraline0120@gmail.com</p>
+        <p>coraline0120@gmail.com</p>
+        <p>Discord - FoxyQwerty</p>
+        <a href="https://www.artstation.com" target="_blank">Go X (Twitter)</a>
     </div>
 
     <script>
         // 탭 메뉴 클릭 시 관련 내용만 표시
         const tabs = document.querySelectorAll('.tab-link'); // 탭 메뉴 항목
         const tabContents = document.querySelectorAll('.tab-content'); // 탭 내용들
+        const banner = document.getElementById('main-banner'); // 배너 요소
 
         tabs.forEach(tab => {
             tab.addEventListener('click', function(event) {
@@ -199,6 +210,13 @@
                 tab.classList.add('active');
                 const target = document.getElementById(tab.getAttribute('data-target'));
                 target.classList.add('active');
+
+                // 버츄얼, 커미션, 콘택트 탭일 때 배너 숨기기
+                if (tab.getAttribute('data-target') === 'virtual' || tab.getAttribute('data-target') === 'commission' || tab.getAttribute('data-target') === 'contact') {
+                    banner.classList.add('hidden');
+                } else {
+                    banner.classList.remove('hidden');
+                }
             });
         });
     </script>
