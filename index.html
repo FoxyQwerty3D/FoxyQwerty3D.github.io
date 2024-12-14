@@ -39,6 +39,7 @@
             font-size: 16px;
             color: #333;
             font-weight: 600;
+            cursor: pointer;
         }
 
         /* 메인 배너 스타일 */
@@ -52,6 +53,10 @@
             overflow: hidden;
             color: #fff;
             text-align: center;
+        }
+
+        .banner.hidden {
+            display: none; /* 숨김 처리 */
         }
 
         .banner .background-img {
@@ -118,7 +123,7 @@
         }
 
         .card {
-            width: 400px; /* 카드 가로 길이 */
+            width: 400px;
             background-color: #f9f9f9;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -154,6 +159,8 @@
             border-radius: 20px;
             font-size: 14px;
         }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -161,47 +168,69 @@
     <!-- 헤더 -->
     <header>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Virtual</a>
-            <a href="#">Contact</a>
+            <a href="#" id="home-link">Home</a>
+            <a href="#" id="virtual-link">Virtual</a>
+            <a href="#" id="contact-link">Contact</a>
         </nav>
     </header>
 
     <!-- 메인 배너 -->
-    <section class="banner">
-        <!-- 아트스테이션 링크 배경 이미지 -->
-        <img src="https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494" alt="메인 배너 배경" class="background-img">
-
-        <!-- 캐릭터 레이어 이미지 -->
+    <section class="banner" id="main-banner">
+        <img src="https://www.artstation.com" alt="메인 배너 배경" class="background-img">
         <img src="https://www.artstation.com" alt="캐릭터 이미지" class="character-layer">
-
         <div class="banner-content">
             <h1>FoxyQwerty</h1>
-          <p>3D Modeling / Look Dev</p>
-            <a href="https://www.artstation.com" target="_blank">Read More</a>
+            <p>3D Modeling / Look Dev</p>
+            <a href="https://www.artstation.com" target="_blank">Go Artstation</a>
         </div>
     </section>
 
     <!-- 카드 섹션 -->
-    <section class="cards">
+    <section class="cards" id="card-section">
+        <!-- 첫 번째 카드 (이미지 없음) -->
         <div class="card">
-            <img src="https://via.placeholder.com/400x250" alt="카드 이미지 1">
-            <h3>Card 1</h3>
-            <p>카드 1의 설명 내용을 작성하세요.</p>
-            <a href="#">자세히 보기</a>
+            <h3>About Me</h3>
+            <p>Korean</p>
+            <p>3D Modeling, Chinese Major</p>
+            <p>[Skils]</p>
+            <p>Maya / 3Ds Max / ZBrush / Substance Painter / Clip Studio / PhotoShop / Premiere Pro / After Effects / Unity</p>
         </div>
+        <!-- 두 번째 카드 (기존 유지) -->
         <div class="card">
             <img src="https://via.placeholder.com/400x250" alt="카드 이미지 2">
             <h3>Card 2</h3>
             <p>카드 2의 설명 내용을 작성하세요.</p>
             <a href="#">자세히 보기</a>
         </div>
+        <!-- 세 번째 카드 (이미지 없음, 트위터 링크) -->
         <div class="card">
-            <img src="https://via.placeholder.com/400x250" alt="카드 이미지 3">
-            <h3>Card 3</h3>
+            <h3>Contact</h3>
             <p>카드 3의 설명 내용을 작성하세요.</p>
-            <a href="#">자세히 보기</a>
+            <a href="https://twitter.com" target="_blank">자세히 보기</a>
         </div>
     </section>
+
+    <!-- JavaScript -->
+    <script>
+        const homeLink = document.getElementById('home-link');
+        const virtualLink = document.getElementById('virtual-link');
+        const contactLink = document.getElementById('contact-link');
+        const mainBanner = document.getElementById('main-banner');
+        const cardSection = document.getElementById('card-section');
+
+        function updatePageVisibility(page) {
+            if (page === 'home') {
+                mainBanner.classList.remove('hidden');
+                cardSection.classList.remove('hidden');
+            } else {
+                mainBanner.classList.add('hidden');
+                cardSection.classList.add('hidden');
+            }
+        }
+
+        homeLink.addEventListener('click', () => updatePageVisibility('home'));
+        virtualLink.addEventListener('click', () => updatePageVisibility('virtual'));
+        contactLink.addEventListener('click', () => updatePageVisibility('contact'));
+    </script>
 </body>
 </html>
