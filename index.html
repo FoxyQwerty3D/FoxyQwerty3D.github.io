@@ -3,117 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoxyQwerty 3D</title>
+    <title>캐릭터 메인 배너 웹사이트</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* 전체 페이지 스타일 */
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 헤더 스타일 */
         header {
-            background-color: #000;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header nav a {
+            margin: 0 30px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* 메인 배너 스타일 */
+        .banner {
+            position: relative;
+            height: 500px;
+            background-color: #5B57D9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
             text-align: center;
         }
 
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        .banner .background-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            filter: brightness(70%);
+            z-index: 1;
         }
 
-        nav ul li {
-            display: inline;
-            margin-right: 30px;
+        .banner .character-layer {
+            position: absolute;
+            bottom: 0;
+            width: auto;
+            height: 450px;
+            z-index: 2;
+            animation: parallax 1.5s ease-out;
         }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
+        @keyframes parallax {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .banner-content h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .banner-content p {
             font-size: 18px;
+            opacity: 0.9;
         }
 
-        main {
-            padding: 50px 20px;
+        .banner-content a {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6C63FF;
+            border-radius: 25px;
+            color: #fff;
         }
 
-        .section {
-            display: none;
+        /* 카드 섹션 */
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 10%;
         }
 
-        .active {
+        .card {
+            width: 400px; /* 카드 가로 길이 */
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
             display: block;
         }
 
-        footer {
-            background-color: #000;
-            padding: 20px;
-            text-align: center;
+        .card h3 {
+            font-size: 20px;
+            margin: 15px 0 10px;
         }
 
-        /* 아트스테이션 이미지 배경 설정 */
-        #aboutSection {
-    position: relative;
-    color: #fff;
-    padding: 200px 20px; /* 이미지가 잘 보이도록 패딩을 추가 */
-    background: url('https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494L') no-repeat center center fixed;
-    background-size: cover; /* 이미지를 화면 크기에 맞게 비율을 유지하면서 늘리기 */
-    background-position: center center; /* 이미지를 중앙에 배치 */
-}
+        .card p {
+            font-size: 14px;
+            color: #555;
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
 
-
+        .card a {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #6C63FF;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 14px;
+        }
     </style>
-    <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-        }
-    </script>
 </head>
 <body>
+
+    <!-- 헤더 -->
     <header>
         <nav>
-            <ul>
-                <li><a href="javascript:void(0);" onclick="showSection('aboutSection')">ABOUT</a></li>
-                <li><a href="javascript:void(0);" onclick="showSection('portfolioSection')">PORTFOLIO</a></li>
-                <li><a href="javascript:void(0);" onclick="showSection('commissionSection')">COMMISSION</a></li>
-                <li><a href="javascript:void(0);" onclick="showSection('contactSection')">CONTACT</a></li>
-            </ul>
+            <a href="#">Home</a>
+            <a href="#">Virtual</a>
+            <a href="#">Contact</a>
         </nav>
     </header>
 
-    <main>
-        <section id="aboutSection" class="section active">
-            <h1>About FoxyQwerty</h1>
-            <p>FoxyQwerty입니다.</p>
-            <p class="" contenteditable="true">3D Modeling / Look Dev</p>
-        </p>
-        </section>
+    <!-- 메인 배너 -->
+    <section class="banner">
+        <!-- 아트스테이션 링크 배경 이미지 -->
+        <img src="https://cdnb.artstation.com/p/assets/images/images/082/754/705/large/foxyqwerty-foxyqwerty-divingdeeper04.jpg?1733847494" alt="메인 배너 배경" class="background-img">
 
-        <section id="portfolioSection" class="section">
-            <h1>Portfolio</h1>
-            <p>다양한 작업을 소개합니다.</p>
-        </section>
+        <!-- 캐릭터 레이어 이미지 -->
+        <img src="https://www.artstation.com" alt="캐릭터 이미지" class="character-layer">
 
-        <section id="commissionSection" class="section">
-            <h1>Commission</h1>
-            <p>커미션 작업에 대한 안내 및 가격은 이곳에서 확인하실 수 있습니다.</p>
-        </section>
+        <div class="banner-content">
+            <h1>FoxyQwerty</h1>
+          <p>3D Modeling / Look Dev</p>
+            <a href="https://www.artstation.com" target="_blank">Read More</a>
+        </div>
+    </section>
 
-        <section id="contactSection" class="section">
-            <h1>Contact</h1>
-            <p>문의 사항은 여기에서 연락해 주세요.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2024 FoxyQwerty 3D</p>
-    </footer>
+    <!-- 카드 섹션 -->
+    <section class="cards">
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="카드 이미지 1">
+            <h3>Card 1</h3>
+            <p>카드 1의 설명 내용을 작성하세요.</p>
+            <a href="#">자세히 보기</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="카드 이미지 2">
+            <h3>Card 2</h3>
+            <p>카드 2의 설명 내용을 작성하세요.</p>
+            <a href="#">자세히 보기</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="카드 이미지 3">
+            <h3>Card 3</h3>
+            <p>카드 3의 설명 내용을 작성하세요.</p>
+            <a href="#">자세히 보기</a>
+        </div>
+    </section>
 </body>
 </html>
