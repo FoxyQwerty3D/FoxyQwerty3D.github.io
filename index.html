@@ -18,44 +18,6 @@
             color: inherit;
         }
 
-        /* 헤더 스타일 */
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: #fff;
-            box-shadow: 0px 0px rgba(0, 0, 0, 0.1);
-            position: relative; /* underline 위치 설정을 위해 relative 위치 추가 */
-            z-index: 3; /* 헤더는 제일 위에 위치하게 설정 */
-        }
-
-        header nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        header nav a {
-            margin: 0 30px;
-            font-size: 16px;
-            color: #333;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-        }
-
-        /* 밑줄 스타일 - 애니메이션만 적용 */
-        #underline {
-            position: absolute;
-            bottom: -5px; /* 메뉴와 배너 간격 조정 */
-            left: 0;
-            height: 2px; /* 라인 두께 2/3로 조정 */
-            background-color: #6C63FF;
-            width: 0;
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
         /* 메인 배너 스타일 */
         .banner {
             position: relative;
@@ -132,75 +94,45 @@
         }
 
         /* 카드 섹션 */
-        .cards {
+        .tabs {
             display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            padding: 50px 10%;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 10px 0;
         }
 
-        .card {
-            width: 400px;
+        .tabs a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .tabs a.active {
+            background-color: #6C63FF;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
             background-color: #f9f9f9;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
             border-radius: 8px;
-            overflow: hidden;
-            margin: 10px;
-            text-align: center;
         }
 
-        .card img {
-            width: 100%;
-            height: auto;
+        .tab-content.active {
             display: block;
         }
 
-        .card h3 {
-            font-size: 20px;
-            margin: 15px 0 10px;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #555;
-            padding: 0 10px;
-            margin-bottom: 15px;
-        }
-
-        .card a {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 16px;
-            background-color: #6C63FF;
-            color: #fff;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-
-        /* Contact 탭 카드 스타일 */
-        .card[data-tab="contact"] {
-            margin: 0 auto; /* 가운데 정렬 */
-        }
-
-        .hidden { display: none; }
-
-        /* 섹션 간의 간격을 위한 스타일 */
-        section {
-            padding: 80px 0;
-        }
     </style>
 </head>
 <body>
-
-    <!-- 헤더 -->
-    <header>
-        <nav>
-            <a href="#home-section" id="home-link" class="nav-item">Home</a>
-            <a href="#virtual-section" id="virtual-link" class="nav-item">Virtual</a>
-            <a href="#contact-section" id="contact-link" class="nav-item">Contact</a>
-        </nav>
-        <div id="underline" class="underline"></div> <!-- 밑줄을 위한 요소 추가 -->
-    </header>
 
     <!-- 메인 배너 -->
     <section class="banner" id="main-banner">
@@ -213,64 +145,62 @@
         </div>
     </section>
 
-    <!-- 카드 섹션 -->
-    <section class="cards" id="card-section">
-        <!-- 첫 번째 카드 (About Me) -->
-        <div class="card" data-tab="home" id="home-section">
-            <h3>About Me</h3>
-            <p>Korean</p>
-            <p>KR / CN / JP</p>
-            <p>3D Modeling, Chinese Major</p>
-            <h3>Skils</h3>
-            <p>Maya / 3Ds Max / ZBrush / Substance Painter / Clip Studio / PhotoShop / Premiere Pro / After Effects / Unity</p>
-            <h3>Contact</h3>
-            <p>coraline0120@gmail.com</p>
-            <a href="https://x.com/FoxyQwerty3D" target="_blank">Go X (Twitter)</a>
-        </div>
-        <!-- Virtual 탭의 카드 -->
-        <div class="card hidden" data-tab="virtual" id="virtual-section">
-            <h3>Virtual</h3>
-            <p>Closed</p>
-            <p>February 2025 Open</p>
-            <p>삼면도 필수 (중요 파츠 디테일샷 필요)</p>
-            <p>퍼리, R18은 받지 않고 있습니다</p>
-            <p>아이폰 페이스아이디, VseeFace 트래킹 모델을 제작합니다</p>
-            <p>오리지널 모델링만 작업합니다.</p>
-            <p>저작권은 작가에게 있습니다.</p>
-            <p>상업 이용은 저작권 양도 절차를 밟습니다.</p>
-        </div>
-        <!-- Contact 탭의 카드 -->
-        <div class="card hidden" data-tab="contact" id="contact-section">
-            <h3>Contact</h3>
-            <p>Reach out to me via email: coraline0120@gmail.com</p>
-        </div>
-    </section>
+    <!-- 탭 메뉴 -->
+    <div class="tabs">
+        <a href="#" id="home-tab" class="tab-link active" data-target="home">About Me</a>
+        <a href="#" id="virtual-tab" class="tab-link" data-target="virtual">Virtual</a>
+        <a href="#" id="contact-tab" class="tab-link" data-target="contact">Contact</a>
+    </div>
+
+    <!-- 탭 내용 -->
+    <div id="home" class="tab-content active">
+        <h3>About Me</h3>
+        <p>Korean</p>
+        <p>KR / CN / JP</p>
+        <p>3D Modeling, Chinese Major</p>
+        <h3>Skills</h3>
+        <p>Maya / 3Ds Max / ZBrush / Substance Painter / Clip Studio / PhotoShop / Premiere Pro / After Effects / Unity</p>
+        <h3>Contact</h3>
+        <p>coraline0120@gmail.com</p>
+        <a href="https://x.com/FoxyQwerty3D" target="_blank">Go X (Twitter)</a>
+    </div>
+
+    <div id="virtual" class="tab-content">
+        <h3>Virtual</h3>
+        <p>Closed</p>
+        <p>February 2025 Open</p>
+        <p>삼면도 필수 (중요 파츠 디테일샷 필요)</p>
+        <p>퍼리, R18은 받지 않고 있습니다</p>
+        <p>아이폰 페이스아이디, VseeFace 트래킹 모델을 제작합니다</p>
+        <p>오리지널 모델링만 작업합니다.</p>
+        <p>저작권은 작가에게 있습니다.</p>
+        <p>상업 이용은 저작권 양도 절차를 밟습니다.</p>
+    </div>
+
+    <div id="contact" class="tab-content">
+        <h3>Contact</h3>
+        <p>Reach out to me via email: coraline0120@gmail.com</p>
+    </div>
 
     <script>
-        // 밑줄 애니메이션 구현
-        const navLinks = document.querySelectorAll('.nav-item');
-        const underline = document.getElementById('underline');
+        // 탭 메뉴 클릭 시 관련 내용만 표시
+        const tabs = document.querySelectorAll('.tab-link'); // 탭 메뉴 항목
+        const tabContents = document.querySelectorAll('.tab-content'); // 탭 내용들
 
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                const linkWidth = this.offsetWidth;
-                const linkLeft = this.offsetLeft;
-                underline.style.width = linkWidth + 'px';
-                underline.style.left = linkLeft + 'px';
-            });
-        });
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                // 모든 탭과 탭 내용을 비활성화
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
 
-        // 섹션 이동 스크롤
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                // 클릭한 탭과 해당 내용을 활성화
+                tab.classList.add('active');
+                const target = document.getElementById(tab.getAttribute('data-target'));
+                target.classList.add('active');
             });
         });
     </script>
-
 </body>
 </html>
