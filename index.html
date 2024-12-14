@@ -141,21 +141,25 @@
 
         /* 카드 스타일 */
         .card-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px; /* 배너와 카드 간격 20px 추가 */
-        }
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px; /* 배너와 카드 간격 20px 추가 */
+    flex-wrap: wrap; /* 화면 크기에 따라 자동으로 줄 바꿈 */
+}
 
-        .card {
-            width: 400px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
+
+.card {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin: 0 auto;  /* 카드가 컨테이너 안에서 중앙 정렬되도록 margin 추가 */
+}
+
 
         .link-btn {
             display: inline-block;
@@ -279,16 +283,33 @@
     </div>
 
     <div id="virtual" class="tab-content">
-        <h2>Virtual Content</h2>
+    <h2>Virtual Content</h2>
+    <div class="card-container">
         <div class="card">
-    <h3>FoxyQwerty</h3>
-    <p>Details about portfolio here.</p>
-    <!-- 깃허브 링크로 이미지 첨부 (증명사진 사이즈 100px x 100px) -->
-    <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/my.png?raw=true" alt="Portfolio Image" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
-    <a href="https://www.artstation.com/foxyqwerty3d" target="_blank" class="link-btn">Go to X (Twitter)</a>
+            <h3>FoxyQwerty</h3>
+            <p>Details about portfolio here.</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/my.png?raw=true" alt="Portfolio Image" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+            <a href="https://www.artstation.com/foxyqwerty3d" target="_blank" class="link-btn">Go to X (Twitter)</a>
+        </div>
+
+        <!-- 새로운 카드 추가 -->
+        <div class="card">
+            <h3>New Virtual Card</h3>
+            <p>This is a new card in the Virtual Content tab.</p>
+            <p>Details about new content or portfolio go here.</p>
+            <a href="https://example.com" target="_blank" class="link-btn">Go to New Content</a>
+        </div>
+        <!-- 새로운 카드 추가 -->
+        <div class="card">
+            <h3>New Virtual Card</h3>
+            <p>This is a new card in the Virtual Content tab.</p>
+            <p>Details about new content or portfolio go here.</p>
+            <a href="https://example.com" target="_blank" class="link-btn">Go to New Content</a>
+        </div>
+    </div>
 </div>
 
-    </div>
+
 
     <div id="commission" class="tab-content">
     <div class="card">
