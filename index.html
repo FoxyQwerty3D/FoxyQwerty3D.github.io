@@ -136,6 +136,22 @@
             transition: background-color 0.3s;
         }
 
+        /* 카드 스타일 */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
         /* 링크 디자인 */
         .link-btn {
             display: inline-block;
@@ -177,6 +193,23 @@
             overflow: visible; /* 텍스트가 길어지면 잘리지 않도록 설정 */
             text-overflow: unset; /* 생략 부호 처리 제거 */
         }
+
+        /* 버츄얼 탭 전용 카드 */
+        #virtual .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #virtual .card {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -189,20 +222,21 @@
         <a href="#" id="contact-tab" class="tab-link" data-target="contact">Contact</a>
     </div>
 
-    <!-- 메인 배너 -->
-    <section class="banner" id="main-banner">
-        <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/foxyqwerty-foxyqwerty-divingdeeper04.jpg?raw=true" alt="메인 배너 배경" class="background-img"> <!-- GitHub URL로 수정 -->
-        <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/git.png?raw=true" alt="캐릭터 이미지" class="character-layer"> <!-- GitHub URL로 수정 -->
-        <div class="banner-content">
-            <h1>FoxyQwerty</h1>
-            <p>3D Modeling / Look Dev</p>
-            <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">Go Artstation</a>
-        </div>
-    </section>
-
     <!-- 탭 내용 -->
     <div id="home" class="tab-content active">
-        <h3>About Me</h3>
+        <!-- 메인 배너 (Home 탭에서만 보임) -->
+        <section class="banner" id="main-banner">
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/foxyqwerty-foxyqwerty-divingdeeper04.jpg?raw=true" alt="메인 배너 배경" class="background-img"> <!-- GitHub URL로 수정 -->
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/git.png?raw=true" alt="캐릭터 이미지" class="character-layer"> <!-- GitHub URL로 수정 -->
+            <div class="banner-content">
+                <h1>FoxyQwerty</h1>
+                <p>3D Modeling / Look Dev</p>
+                <a href="https://www.artstation.com/foxyqwerty3d" target="_blank">Go Artstation</a>
+            </div>
+        </section>
+        <div class="card-container">
+            <div class="card">
+                <h3>About Me</h3>
         <p>Korean</p>
         <p>KR / CN / JP</p>
         <p>3D Modeling, Chinese Major</p>
@@ -211,72 +245,70 @@
         <p>PhotoShop / Premiere Pro / After Effects / Unity</p>
         <h3>Contact</h3>
         <p>coraline0120@gmail.com</p>
-        <div class="link-btn">
-            <a href="https://x.com/FoxyQwerty3D" target="_blank">Go X (Twitter)</a>
+        <a href="https://x.com/foxyqwerty3d" class="link-btn">Go to X</a>
+            </div>
+            <div class="card">
+                <h3>Card 2</h3>
+                <p>Content for the second card.</p>
+                <div class="link-btn">
+                    <a href="#">More Info</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="virtual" class="tab-content">
-        <h3>아아- 등대에서 만나자</h3>
-        <p>버츄얼 아티스트를 소개합니다</p>
-        <p>NAME:</p>
+        <h3>등대에서 모이자</h3>
+        <p>버츄얼 아티스트를 소개합니다.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>FoxyQwerty</h3>
+                <p>Description about the artist.</p>
+                <a href="#" class="link-btn">Learn More</a>
+            </div>
+            <div class="card">
+                <h3>Artist</h3>
+                <p>Description of another virtual artist.</p>
+                <a href="#" class="link-btn">Learn More</a>
+            </div>
+        </div>
     </div>
 
     <div id="commission" class="tab-content">
         <h3>Commission</h3>
-        <p>Closed</p>
-        <p>February 2025 Open</p>
-        <p>삼면도 필수 (중요 파츠 디테일샷 필요)</p>
-        <p>퍼리, R18은 받지 않고 있습니다</p>
-        <p>아이폰 페이스아이디, VseeFace 트래킹 모델을 제작합니다</p>
-        <p>오리지널 모델링만 작업합니다.</p>
-        <p>저작권은 작가에게 있습니다.</p>
-        <p>상업 이용은 저작권 양도 절차를 밟습니다.</p>
+        <p>Details about commissions.</p>
     </div>
 
     <div id="contact" class="tab-content">
         <h3>Contact</h3>
-        <a href="coraline0120@gmail.com" id="copy-email" class="link-btn" onclick="copyText('coraline0120@gmail.com')">Copy coraline0120@gmail.com</a>
-        <a href="FoxyQwerty" id="copy-discord" class="link-btn" onclick="copyText('FoxyQwerty')">Copy Discord</a>
-        <a href="https://x.com/FoxyQwerty3D" target="_blank" class="link-btn">Go X (Twitter)</a>
+        <a href="coraline0120@gmail.com" class="link-btn">Copy coraline0120@gmail.com</a>
+        <a href="FoxyQwerty" class="link-btn">Copy FoxyQwerty</a>
     </div>
 
     <script>
-        // 탭 메뉴 클릭 시 관련 내용만 표시
-        const tabs = document.querySelectorAll('.tab-link'); // 탭 메뉴 항목
-        const tabContents = document.querySelectorAll('.tab-content'); // 탭 내용들
-        const banner = document.getElementById('main-banner'); // 배너 요소
+        const tabs = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const banner = document.getElementById('main-banner'); // 배너 요소 선택
 
         tabs.forEach(tab => {
-            tab.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                // 모든 탭과 탭 내용을 비활성화
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+
                 tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-
-                // 클릭한 탭과 해당 내용을 활성화
                 tab.classList.add('active');
-                const target = document.getElementById(tab.getAttribute('data-target'));
-                target.classList.add('active');
 
-                // 버츄얼, 커미션, 콘택트 탭일 때 배너 숨기기
-                if (tab.getAttribute('data-target') === 'virtual' || tab.getAttribute('data-target') === 'commission' || tab.getAttribute('data-target') === 'contact') {
-                    banner.classList.add('hidden');
-                } else {
+                tabContents.forEach(content => content.classList.remove('active'));
+                const targetContent = document.getElementById(tab.getAttribute('data-target'));
+                targetContent.classList.add('active');
+
+                // Home 탭을 제외한 나머지 탭에서는 배너 숨김 처리
+                if (tab.id === 'home-tab') {
                     banner.classList.remove('hidden');
+                } else {
+                    banner.classList.add('hidden');
                 }
             });
         });
-
-        function copyText(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-        }
     </script>
 
 </body>
