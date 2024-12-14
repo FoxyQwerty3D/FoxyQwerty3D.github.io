@@ -207,31 +207,6 @@
             background-color: #2c2c2c;
         }
 
-        /* 연락처 탭 */
-        #contact {
-            text-align: center; /* 가운데 정렬 */
-            margin: 0 auto; /* 중앙 정렬 */
-        }
-
-        #contact h3 {
-            margin-bottom: 20px;
-        }
-
-        #contact a {
-            display: block;
-            margin: 10px 0; /* 각 버튼들 간의 간격 */
-            font-size: 18px;
-            white-space: nowrap; /* 텍스트가 두 줄로 나누어지지 않도록 설정 */
-        }
-
-        /* 이메일 주소가 제대로 보이도록 설정 */
-        #contact .link-btn {
-            max-width: none; /* 이메일이 한 줄에 모두 보이도록 max-width 제거 */
-            white-space: nowrap; /* 텍스트가 줄 바꿈 없이 한 줄로 표시되도록 설정 */
-            overflow: visible; /* 텍스트가 길어지면 잘리지 않도록 설정 */
-            text-overflow: unset; /* 생략 부호 처리 제거 */
-        }
-
         /* 나이트모드 토글 버튼 */
         #night-mode-toggle {
             position: fixed;
@@ -263,7 +238,6 @@
         <a href="#" id="home-tab" class="tab-link active" data-target="home">Home</a>
         <a href="#" id="virtual-tab" class="tab-link" data-target="virtual">Virtual</a>
         <a href="#" id="commission-tab" class="tab-link" data-target="commission">Commission</a>
-        <a href="#" id="contact-tab" class="tab-link" data-target="contact">Contact</a>
     </div>
 
     <!-- 탭 내용 -->
@@ -280,36 +254,40 @@
         <div class="card-container">
             <div class="card">
                 <h3>About Me</h3>
-        <p>Korean</p>
-        <p>KR / CN / JP</p>
-        <p>3D Modeling, Chinese Major</p>
-        <h3>Skills</h3>
-        <p>Maya / 3Ds Max / ZBrush / Substance Painter / Clip Studio /</p>
-        <p>PhotoShop / Premiere Pro / After Effects / Unity</p>
-        <h3>Contact</h3>
-        <p>coraline0120@gmail.com</p>
-                <p>Details about the artist here.</p>
+                <p>Korean</p>
+                <p>KR / CN / JP</p>
+                <p>3D Modeling, Chinese Major</p>
+                <h3>Skills</h3>
+                <p>Maya / 3Ds Max / ZBrush / Substance Painter / Clip Studio /</p>
+                <p>PhotoShop / Premiere Pro / After Effects / Unity</p>
+                <h3>Contact</h3>
+                <p>coraline0120@gmail.com</p>
+                <!-- About Me 카드 하단에 추가할 버튼 -->
+                <a href="https://x.com/FoxyQwerty3D" target="_blank" class="link-btn">Go X (Twitter)</a>
             </div>
             <div class="card">
                 <h3>Portfolio</h3>
                 <p>Details about portfolio here.</p>
+                <a href="https://www.artstation.com/foxyqwerty3d" target="_blank" class="link-btn">Go Artstation</a>
+            </div>
+            <div class="card">
+                <h3>Portfolio</h3>
+                <p>Details about portfolio here.</p>
+                <a href="https://www.artstation.com/foxyqwerty3d" target="_blank" class="link-btn">Go Artstation</a>
             </div>
         </div>
     </div>
 
     <div id="virtual" class="tab-content">
-        <div class="card-container">
-            <div class="card">
-                <h3>FOXYQWERTY</h3>
-                <p>3D ARTIST</p>
-            </div>
-        </div>
-        <div class="card-container">
-            <div class="card">
-                <h3>Virtual Artist</h3>
-                <p>Details about virtual artist here.</p>
-            </div>
-        </div>
+        <h2>Virtual Content</h2>
+        <div class="card">
+    <h3>FoxyQwerty</h3>
+    <p>Details about portfolio here.</p>
+    <!-- 깃허브 링크로 이미지 첨부 (증명사진 사이즈 100px x 100px) -->
+    <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/my.png?raw=true" alt="Portfolio Image" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+    <a href="https://www.artstation.com/foxyqwerty3d" target="_blank" class="link-btn">Go to X (Twitter)</a>
+</div>
+
     </div>
 
     <div id="commission" class="tab-content">
@@ -324,41 +302,34 @@
         <p>상업 이용은 저작권 양도 절차를 밟습니다.</p>
     </div>
 
-    <div id="contact" class="tab-content">
-        <h3>Contact Info</h3>
-        <a href="mailto:example@example.com" class="link-btn">Email Me</a>
-        <a href="https://www.artstation.com" class="link-btn">ArtStation</a>
-    </div>
-
-    <div id="night-mode-toggle">🌙</div> <!-- 나이트모드 토글 버튼 -->
+    <!-- 나이트모드 토글 버튼 -->
+    <div id="night-mode-toggle" onclick="toggleNightMode()">🌙</div>
 
     <script>
-        const tabs = document.querySelectorAll('.tab-link');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const tabLinks = document.querySelectorAll('.tab-link');
-        const nightModeToggle = document.getElementById('night-mode-toggle');
-        const body = document.body;
-
-        tabs.forEach(tab => {
+        // 탭 클릭 시 활성화되는 함수
+        document.querySelectorAll('.tab-link').forEach(tab => {
             tab.addEventListener('click', function() {
-                const target = this.dataset.target;
+                // 탭 활성화
+                document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
+                tab.classList.add('active');
 
-                tabLinks.forEach(link => {
-                    link.classList.remove('active');
+                // 해당 탭 내용 활성화
+                const target = tab.getAttribute('data-target');
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    if (content.id === target) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
                 });
-
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-
-                document.getElementById(target).classList.add('active');
-                this.classList.add('active');
             });
         });
 
-        nightModeToggle.addEventListener('click', () => {
-            body.classList.toggle('night-mode');
-        });
+        // 나이트모드 토글 함수
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+        }
     </script>
+
 </body>
 </html>
