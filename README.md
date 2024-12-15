@@ -1,76 +1,454 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Website</title>
+    <title>FoxyQwerty 3D</title>
+
+    <!-- Google Fonts에서 Noto Sans 폰트 불러오기 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Noto Sans', sans-serif;
+        /* 전체 페이지 스타일 */
+        body, html {
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f4f4f9;
+            overflow-x: hidden;
+            font-family: 'Noto Sans', sans-serif; /* Noto Sans 폰트 적용 */
+            transition: background-color 0.3s, color 0.3s; /* 나이트모드 애니메이션 */
         }
-        html {
-            scroll-behavior: smooth;
-        }
-        header {
-            background-color: #abb3db;
-            color: white;
-            padding: 20px 0;
-        }
-        nav {
-            margin: 15px 0;
-        }
-        nav a {
-            color: white;
+
+        a {
             text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
+            color: inherit;
         }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
+
+        /* 탭 메뉴 */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: #f1f1f1;
             padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            transition: background-color 0.3s; /* 나이트모드 배경색 변화 */
         }
+
+        .tabs a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .tabs a.active {
+            background-color: #f7a3bc;
+            color: #fff;
+        }
+
+        /* 탭 내용 */
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: #f9f9f9;
+            margin: 20px 0;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 메인 배너 스타일 */
+        .banner {
+            position: relative;
+            height: 500px;
+            background-color: #f7a3bc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+            margin-top: 40px; /* 메뉴와 배너 간격 조정 */
+            z-index: 2; /* 배너는 헤더 아래에 위치하도록 설정 */
+            margin-left: 30px; /* 좌측 여백 */
+            margin-right: 30px; /* 우측 여백 */
+            border-radius: 30px; /* 모서리 둥글게 설정 */
+        }
+
+        .banner.hidden {
+            display: none; /* 숨김 처리 */
+        }
+
+        .banner .background-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            filter: brightness(70%);
+            z-index: 1; /* 배경 이미지는 제일 아래에 위치 */
+        }
+
+        .banner .character-layer {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: auto;
+            height: 500px;
+            z-index: 1; /* 캐릭터 이미지는 배너와 헤더보다 위에 위치 */
+            animation: parallax 1.5s ease-out;
+        }
+
+        @keyframes parallax {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2; /* 배너 콘텐츠는 배경과 캐릭터 이미지 위에 있지만 헤더 아래에 위치 */
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .banner-content h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .banner-content p {
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s; /* "FoxyQwerty" 텍스트보다 한 박자 늦게 나타나도록 설정 */
+        }
+
+        .banner-content a {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f7a3bc;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        /* fade-in 애니메이션 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 카드 스타일 */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px; /* 배너와 카드 간격 20px 추가 */
+            flex-wrap: wrap; /* 화면 크기에 따라 자동으로 줄 바꿈 */
+        }
+
+        .card {
+            width: 350px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 0 auto;  /* 카드가 컨테이너 안에서 중앙 정렬되도록 margin 추가 */
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 400; /* 기본 굵기 */
+            font-size: 16px;  /* 폰트 크기 */
+        }
+        
+        /* h3 제목에도 폰트 적용 */
+        .card h3 {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 700; /* 제목에 더 굵은 폰트 */
+        font-size: 20px;  /* 제목 크기 */
+}
+
+        .link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f7a3bc;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .link-btn:hover {
+            background-color: #4a45c4;
+        }
+
+        /* 나이트모드 스타일 */
+        body.night-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .night-mode .tabs {
+            background-color: #333;
+        }
+
+        .night-mode .tabs a {
+            color: #fff;
+        }
+
+        .night-mode .tabs a.active {
+            background-color: #f7a3bc;
+            color: #fff;
+        }
+
+        .night-mode .tab-content {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .night-mode .card {
+            background-color: #333;
+            color: #e0e0e0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .night-mode .banner {
+            background-color: #2c2c2c;
+        }
+
+        /* 나이트모드 토글 버튼 */
+        #night-mode-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #f7a3bc;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #night-mode-toggle:hover {
+            background-color: #4a45c4;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>FOXYQWERTY 3D</h1>
-        <nav>
-            <a href="#about" aria-label="Go to About section">About Me</a>
-            <a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a>
-            <a href="#contact" aria-label="Go to Contact section">Contact</a>
-        </nav>
-    </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>This is a simple website created to demonstrate basic HTML and CSS.</p>
+
+    <!-- 탭 메뉴 -->
+    <div class="tabs">
+        <a href="#" id="home-tab" class="tab-link active" data-target="home">Home</a>
+        <a href="#" id="virtual-tab" class="tab-link" data-target="virtual">Virtual Project</a>
+        <a href="#" id="commission-tab" class="tab-link" data-target="commission">Commission</a>
+    </div>
+
+    <!-- 탭 내용 -->
+    <div id="home" class="tab-content active">
+        <section class="banner" id="main-banner">
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/foxyqwerty-foxyqwerty-divingdeeper04.jpg?raw=true" alt="메인 배너 배경" class="background-img"> 
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/git.png?raw=true" alt="캐릭터 이미지" class="character-layer">
+            <div class="banner-content">
+                <h1>FoxyQwerty</h1>
+                <p>3D Modeling / Look Dev</p>
+                <a href="https://www.artstation.com/foxyqwerty3d">Go Artstation</a>
+            </div>
+        </section>
+        <!-- 카드 -->
+        <section class="card-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <div class="card" style="text-align: left;">
+        <h3>About Me</h3>
+        <p>Korean</p>
+        <p>KR / CN / JP</p>
+        <p>3D Modeling, Chinese Major</p>
+        <h3>Skills</h3>
+        <p>Maya / 3Ds Max / ZBrush / Marvelous Designer</p>
+        <p>Substance Painter / PhotoShop / Clip Studio</p>
+        <p>Premiere Pro / After Effects / Unity</p>
+        <h3>Contact</h3>
+        <p>coraline0120@gmail.com</p>
+        <p>Discord: FoxyQwerty</p>
+                
+                <!-- 카드 -->
+            </div>
+            <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>Ellie</h3>
+            <p>3학년 2학기 과제</p>
+            <p>The Last of Us 엘리</p>
+            <img src="https://cdna.artstation.com/p/assets/images/images/074/803/408/large/ahnbii-ahnbii-ellie-beauty.jpg?1712996632" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="https://www.artstation.com/artwork/AlNeY5" class="link-btn">Learn More</a>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>Diving Deeper</h3>
+            <p>3학년 2학기 과제</p>
+            <p>다이버 헬멧</p>
+            <img src="https://cdna.artstation.com/p/assets/images/images/082/754/896/large/foxyqwerty-foxyqwerty-divingdeeper0.jpg?1733847769" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="https://www.artstation.com/artwork/rlWwlO" class="link-btn">Learn More</a>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>None</h3>
+            <p>(임시 사진입니다)</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/1100x1300.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="#" class="link-btn">Learn More</a>
+        </div>
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>None</h3>
+            <p>(임시 사진입니다)</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/1100x1300.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="#" class="link-btn">Learn More</a>
+        </div>
+        
+        </section>
+    </div>
+
+    <div id="virtual" class="tab-content">
+    <h3>아아- 등대에서 만나자</h3>
+        <p>123</p>
+        
+    <!-- 카드 -->
+    <section class="card-container" style="display: flex; gap: 20px; justify-content: space-between;">
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>FOXYQWERTY</h3>
+            <p>3D Artist</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/my.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="https://x.com/FoxyQwerty3D" class="link-btn">X (Twitter)</a>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>Next</h3>
+            <p>None</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/1100x1300.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="#" class="link-btn">X (Twitter)</a>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>Next</h3>
+            <p>None</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/1100x1300.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="#" class="link-btn">X (Twitter)</a>
+        </div>
     </section>
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <p>We provide clean and minimal web design for beginners.</p>
+</div>
+
+
+<div id="commission" class="tab-content">
+    <!-- 카드 -->
+    <section class="card-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px; text-align: left;">
+            <h3>Commission</h3>
+            <p>Closed</p>
+            <p>인간 외형만 작업합니다. (퍼리, R18 X)</p>
+            <p>오리지널 모델링 작업</p>
+            <p>아이폰 FaceID 기반 모델</p>
+            <h3>저작권</h3>
+            <p>저작권은 작가에게 있습니다</p>
+            <p>저작권 양도 후 상업이용 가능</p>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px; text-align: left;">
+            <h3>Price</h3>
+            <p>FBX 파일</p>
+            <p>오리지널 모델링만 작업합니다</p>
+            <p>기본 의상, 악세사리 외 추가</p>
+            <p>물리엔진 추가(머리, 꼬리, 치마 등)</p>
+            <p>버츄얼 제작 (바디 삭제)</p>
+            <p>버츄얼 제작</p>
+            <h3>환불정책</h3>
+            <p>작업 시작 전 - 전액환불</p>
+            <p>모델링 단계 - 50% 환불</p>
+            <p>리깅 전 - 30% 환불</p>
+            <p>리깅 후 - 환불 불가</p>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>필요해요</h3>
+            <p>삼면도</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/1100x1300.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="#" class="link-btn">Learn More</a>
+        </div>
+        
+        <!-- 카드 -->
+        <div class="card" style="flex: 1; max-width: 350px;">
+            <h3>필요해요</h3>
+            <p>악세사리 디테일 사진</p>
+            <img src="https://github.com/FoxyQwerty3D/FoxyQwerty3D.github.io/blob/main/1100x1300.png?raw=true" alt="증명사진" style="width: 100%; height: auto; border-radius: 15px; margin-top: 15px;">
+            <a href="#" class="link-btn">Learn More</a>
+        </div>
     </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: coraline0120@gmail.com</p>
-        <p>Artstation: <a href="https://artstation.com/foxyqwerty3d" target="_blank">artstation.com/foxyqwerty3d</a></p>
-        <p>X: <a href="https://x.com/FoxyQwerty3D" target="_blank">https://x.com/FoxyQwerty3D</a></p>
-    </section>
-    <footer>
-        <p>&copy; 2024 Simple Website. All rights reserved.</p>
-    </footer>
+</div>
+
+
+    <!-- 나이트모드 토글 버튼 -->
+    <div id="night-mode-toggle">🌙</div>
+
+    <script>
+        // 탭 전환 기능
+        const tabs = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // 모든 탭과 탭 콘텐츠 비활성화
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // 클릭된 탭 활성화
+                tab.classList.add('active');
+                const target = tab.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // 나이트모드 토글
+        const nightModeToggle = document.getElementById('night-mode-toggle');
+        nightModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('night-mode');
+        });
+    </script>
+
 </body>
 </html>
